@@ -2,19 +2,24 @@ import { Link } from "react-router-dom";
 import Title from "../pages/Title";
 
 
-const Navbar =()=>{
-    return(
+const Navbar = () => {
+    return (
         <>
-    <nav>
-        <div className="">
-        <Title/>
-        </div>
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-        </ul>
-    </nav>
+            {/* <div className="header flex "> */}
+            <nav className="flex justify-between items-center shadow-lg">
+                <div className="">
+                    <Title />
+                </div>
+                <ul className="flex m-3">
+                    <li className="p-3"><Link to="/" className="font-medium">Home</Link></li>
+                    <li className="p-3"><Link to="/about" className="font-medium">About</Link></li>
+                    <li className="p-3"><Link to="/contact" className="font-medium">Contact</Link></li>
+                    <li className="p-3"><i class="fa-solid fa-cart-shopping"></i></li>
+                    <li className="p-3"><button className="font-medium">Login</button></li>
+                </ul>
+            </nav>
+
+            {/* </div> */}
         </>
     )
 }
