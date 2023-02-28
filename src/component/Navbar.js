@@ -1,11 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Title from "../pages/Title";
-
-
 const Navbar = () => {
+    const [islogin , setlogin] = useState(true)
     return (
         <>
-            {/* <div className="header flex "> */}
             <nav className="flex justify-between items-center shadow-lg">
                 <div className="">
                     <Title />
@@ -15,11 +14,20 @@ const Navbar = () => {
                     <li className="p-3"><Link to="/about" className="font-medium">About</Link></li>
                     <li className="p-3"><Link to="/contact" className="font-medium">Contact</Link></li>
                     <li className="p-3"><i class="fa-solid fa-cart-shopping"></i></li>
-                    <li className="p-3"><button className="font-medium">Login</button></li>
+                    <li className="p-3">
+                    {
+                        islogin ?
+                        <Link to="signin">                      
+                        <button className="font-medium"
+                        onClick={()=>{
+                            setlogin(false)
+                        }}>Login</button></Link>:<Link to=""><button className="font-medium" onClick={()=>{
+                            setlogin(true)
+                        }}>Logout</button></Link>
+                    }
+                    </li>
                 </ul>
             </nav>
-
-            {/* </div> */}
         </>
     )
 }

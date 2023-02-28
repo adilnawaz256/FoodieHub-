@@ -3,6 +3,8 @@ import Navbar from "./component/Navbar"
 import About from '../src/component/About'
 import Footer from "./component/Footer"
 import Contact from './component/Contact'
+import Profile from "./pages/Profile"
+import LoginPage from "./component/LoginPage"
 
 function App() {
     return (
@@ -21,13 +23,24 @@ const approuter = createBrowserRouter([
         children: [
             {
                 path: "about",
-                element: <About />
+                element: <About />,
+                children:[
+                    {
+                        path:"profile",
+                        element:<Profile/>
+                    }
+                ]
             },
             {
                 path: "contact",
                 element: <Contact />
             }
-        ]
+        ],
+
+    },
+    {
+        path:"/signin",
+        element:<LoginPage/>
     }
 ])
 
