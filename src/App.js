@@ -7,6 +7,7 @@ import Profile from "./pages/Profile"
 import LoginPage from "./component/LoginPage"
 import useOnline from "./utils/useonline"
 import OfflineComponent from "./component/OfflineComponent"
+import SearchBox from "./pages/SearchBox"
 
 function App() {
     const isOnline = useOnline()
@@ -37,6 +38,10 @@ const approuter = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contact />
+            },
+            {
+                path:"/",
+                element:<SearchBox/>
             }
         ],
 
