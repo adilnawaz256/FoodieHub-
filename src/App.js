@@ -5,9 +5,12 @@ import Footer from "./component/Footer"
 import Contact from './component/Contact'
 import Profile from "./pages/Profile"
 import LoginPage from "./component/LoginPage"
+import useOnline from "./utils/useonline"
+import OfflineComponent from "./component/OfflineComponent"
 
 function App() {
-    return (
+    const isOnline = useOnline()
+    return (!isOnline)?<OfflineComponent/>:(
         <>
             <Navbar />
             <Outlet />
