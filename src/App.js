@@ -1,13 +1,13 @@
 import { createBrowserRouter, Outlet } from "react-router-dom"
-import Navbar from "./component/Navbar"
-import About from '../src/component/About'
-import Footer from "./component/Footer"
-import Contact from './component/Contact'
+import Navbar from "./components/Navbar"
+import About from '../src/components/About'
+import Footer from "./components/Footer"
+import Contact from './components/Contact'
 import Profile from "./pages/Profile"
-import LoginPage from "./component/LoginPage"
+import LoginPage from "./components/LoginPage"
 import useOnline from "./utils/useonline"
-import OfflineComponent from "./component/OfflineComponent"
-import SearchBox from "./pages/SearchBox"
+import OfflineComponent from "./components/OfflineComponent"
+import Body from "./components/Body"
 
 function App() {
     const isOnline = useOnline()
@@ -40,9 +40,10 @@ const approuter = createBrowserRouter([
                 element: <Contact />
             },
             {
-                path:"/",
-                element:<SearchBox/>
+                    path:"/",
+                    element:<Body/>
             }
+        
         ],
 
     },

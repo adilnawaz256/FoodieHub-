@@ -9,6 +9,7 @@ const About = () => {
             <div className='flex justify-center mt-10'>
                 {
                 isprofile?
+                <>
                 <Link to='/about'>
                 <div className='flex justify-center'>
                 <button className='text-lg text-white p-2 font-semibold rounded border-white bg-slate-900'
@@ -17,8 +18,10 @@ const About = () => {
                 }}
                 >Hide My Profile</button>
                 </div>
-                   <Outlet/>
+                <Outlet/>
                 </Link>
+          
+                </>
                 :
                 <Link to="profile">
     

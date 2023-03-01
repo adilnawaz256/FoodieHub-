@@ -1,6 +1,6 @@
 import SocialMedia from "./SocialMedia"
 import { useEffect, useState } from 'react'
-import ShimmerCard from "../component/ShimmerCard"
+import ShimmerCard from "../components/ShimmerCard"
 
 
 const Profile = () => {
@@ -18,7 +18,7 @@ const Profile = () => {
     return (!Githubprofile) ? <ShimmerCard/>:(
         <div className="flex justify-center">
             <div className="shadow w-80 h-96 m-10">
-                <h1 className="text-center font-bold m-8 text-xl">About Me</h1>
+                <h1 className="text-center font-bold m-8 text-xl">About Me </h1>
                 <img src={Githubprofile?.avatar_url} alt="" width="110px" className="rounded-full m-auto"/>
                 <div>
                     <h3 className="text-black text-center font-bold text-2xl">{Githubprofile?.name}</h3>
