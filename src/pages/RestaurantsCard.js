@@ -2,7 +2,7 @@ import {ImageCloundinaryURL} from '../components/constant'
 
 const RestaurantsCard = (props) => {
     const {name ,cuisines ,cloudinaryImageId,slaString,costForTwoString ,avgRating} = props.data
-    console.log(cuisines)
+    // console.log(cuisines)
     return (
             <div className="row  hover:shadow-xl w-64 h-80  m-4 rounded">
                 <img src={`${ImageCloundinaryURL}/${cloudinaryImageId}`} alt="product-image" className=" rounded" />

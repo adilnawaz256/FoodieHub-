@@ -13,7 +13,7 @@ const Profile = () => {
         const json = await data.json()
         setGithubprofile(json)
     }
-    console.log(Githubprofile);
+    // console.log(Githubprofile);
 
     return (!Githubprofile) ? <ShimmerCard/>:(
         <div className="flex justify-center">

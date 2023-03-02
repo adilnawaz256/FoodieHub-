@@ -1,7 +1,7 @@
 const LoginPage = ()=>
 {
     return(
-    <div>
+    <div className="font">
 
 
 

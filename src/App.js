@@ -8,6 +8,7 @@ import LoginPage from "./components/LoginPage"
 import useOnline from "./utils/useonline"
 import OfflineComponent from "./components/OfflineComponent"
 import Body from "./components/Body"
+import RestaurantMenu from "./components/RestaurantMenu"
 
 function App() {
     const isOnline = useOnline()
@@ -42,6 +43,9 @@ const approuter = createBrowserRouter([
             {
                     path:"/",
                     element:<Body/>
+            },{
+                path:"/restaurantmenu/:id",
+                element:<RestaurantMenu/>
             }
         
         ],

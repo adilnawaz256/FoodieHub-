@@ -1,7 +1,7 @@
 const ShimmerCard = ()=>{
     return(
         <>
-         <div className="flex justify-center  ">
+         <div className="flex justify-center  animate-pulse bg-slate-300">
             <div className="shadow w-80 h-96 m-10 ">
                 <h1 className="text-center font-bold m-8 text-xl"></h1>
                 <img src='' alt="" width="110px" className="rounded-full m-auto  "/>
