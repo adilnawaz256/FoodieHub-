@@ -1,8 +1,9 @@
 import { useState , useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { ImageCloundinaryURL } from "./constant"
 
 const RestaurantMenu = ()=>{
-    const {id}=useParams()
+    const {id}= useParams()
     const [menu , setmenu] = useState(null)
     useEffect(()=>{
         getRestaurantMenu()
@@ -14,7 +15,8 @@ const RestaurantMenu = ()=>{
         setmenu(json.data.cards[0].card.card.info)
     }
     if(!menu) return null
-
+// AutoVegOnly_qkjowj
+console.log(menu.cloudinaryImageId);
     return(
         <div>
            {
@@ -24,6 +26,7 @@ const RestaurantMenu = ()=>{
                 )
             })
            }
+           <img src={`${ImageCloundinaryURL}/${menu.cloudinaryImageId}`}/>
             <h1>{menu.name}</h1>
             <h1>{menu.city}</h1>
             <h1>Dynamic Routing</h1>

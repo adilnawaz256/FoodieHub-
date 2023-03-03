@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RestaurantsCard from "../pages/RestaurantsCard";
 import SearchBox from '../pages/SearchBox'
 import ShimmerCardRestaurantCard from "./ShimmerRestaurantCard";
 import { API } from "./constant";
 import { Link } from "react-router-dom";
+import CreateContext from "../utils/CreateContext";
 const Body = () => {
     const [restaurants, setrestaurants] = useState([])
-
+    const {Delhi} = useContext(CreateContext)
     useEffect(() => {
         getRestaurant()
     }, [])
     async function getRestaurant() {
-        console.log(API)
         const data = await fetch(API)
         const json = await data.json()
         setrestaurants(json?.data?.cards[2]?.data?.data?.cards)
@@ -20,7 +20,6 @@ const Body = () => {
     return (
         <>
             <SearchBox />
-
             <div className="flex flex-wrap justify-center items-center hover:border-b-white">
                 {
                     (restaurants.length == 0) ? <ShimmerCardRestaurantCard /> :
