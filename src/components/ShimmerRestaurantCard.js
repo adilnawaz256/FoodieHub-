@@ -12,7 +12,7 @@ const ShimmerCardRestaurantCard = () => {
                                 <div className="ml-2 text-sm"></div>
                                 <div className="flex justify-around mt-3 animate-pulse bg-neutral-300">
                                     <div className="" >
-                                        <span></span>
+                                        <span className="font-semibold text-sm"></span>
                                         <span className="p-2 font-semibold text-sm"></span>
                                     </div>
                                     <div></div>

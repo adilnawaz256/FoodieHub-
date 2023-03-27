@@ -35,7 +35,7 @@ function App() {
     return (!isOnline)?<OfflineComponent/>:(
         <>
     <HandleContext.Provider value={locationCity}>
-            <Navbar />
+          <Navbar />
             <Outlet />
             <Footer />
             </HandleContext.Provider>
@@ -47,7 +47,9 @@ function App() {
 const approuter = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <Suspense fallback={<h1>Loading.......</h1>}>
+            <App />
+        </Suspense>,
         children: [
             {
                 path: "about",
@@ -63,7 +65,9 @@ const approuter = createBrowserRouter([
             },
             {
                 path: "contact",
-                element: <Contact />
+                element:<Suspense fallback={<h1>Loading.....</h1>}>
+                     <Contact />
+                </Suspense>
             },
             {
                     path:"/",

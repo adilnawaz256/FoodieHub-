@@ -15,8 +15,11 @@ const Navbar = () => {
                 setcity(Object.values(city[item]))
             }
         })
-        const sendInformation = createContext(iscity)
+        // how to send the data to the parent component
+
     }
+   
+
     return (
         <>
             <nav className="flex justify-between items-center shadow-lg">
