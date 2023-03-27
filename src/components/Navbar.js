@@ -1,8 +1,22 @@
-import {  useState } from "react";
+import {  createContext, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Title from "../pages/Title";
+import City from "../pages/City";
+import { HandleContext } from "../utils/HandleContext";
 const Navbar = () => {
     const [islogin , setlogin] = useState(true)
+    const city = useContext(HandleContext)
+    const [iscity , setcity] = useState(city)
+    function HandleOnChange(e){
+        const AllCity = Object.keys(city)
+        const x = e.target.value
+        AllCity.forEach(item=>{
+            if(item===x){
+                setcity(Object.values(city[item]))
+            }
+        })
+        const sendInformation = createContext(iscity)
+    }
     return (
         <>
             <nav className="flex justify-between items-center shadow-lg">
@@ -10,7 +24,8 @@ const Navbar = () => {
                     <Title />
                     <div className="mt-7 ml-4">
                   
-                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2">
+                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2" onChange={HandleOnChange}>
+                      <City/>
                 </select>
           
                 </div>
