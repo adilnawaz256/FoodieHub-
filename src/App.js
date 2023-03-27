@@ -25,7 +25,9 @@ const locationCity ={
     "Patna":{
         lat:25.5940947,
         lag:85.1375645
-    }
+    },
+  
+
 }
 function App() {
     const isOnline = useOnline()
