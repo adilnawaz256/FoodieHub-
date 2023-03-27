@@ -1,10 +1,4 @@
 import logo from '../assets/logo.jpg'
-
-
-
-
-
-
 const Title = () => {
     return (
     <>

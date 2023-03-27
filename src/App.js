@@ -4,23 +4,26 @@ import useOnline from "./utils/useonline"
 import OfflineComponent from "./components/OfflineComponent"
 import Body from "./components/Body"
 import RestaurantMenu from "./components/RestaurantMenu"
-import { lazy, Suspense, useContext, useState } from "react"
+import { lazy, Suspense } from "react"
 import ShimmerCardRestaurantCard from "./components/ShimmerRestaurantCard"
-import CreateContext from "./utils/CreateContext"
+import { Provider } from "react-redux"
+import { store } from "./utils/store"
 const Navbar = lazy(()=> import('./components/Navbar'))
 const About = lazy(()=>  import('../src/components/About'))
 const Footer = lazy(()=> import('./components/Footer'))
 const Contact = lazy(()=> import('./components/Contact'))
 const Profile = lazy(()=>import('./pages/Profile'))
+
 function App() {
     const isOnline = useOnline()
-    const Cordinate = useContext(CreateContext)
+  
     return (!isOnline)?<OfflineComponent/>:(
         <>
-      
+      {/* <Provider store={store}> */}
             <Navbar />
             <Outlet />
             <Footer />
+            {/* </Provider> */}
            
         </>
     )

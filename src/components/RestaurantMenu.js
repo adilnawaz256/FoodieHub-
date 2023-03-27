@@ -11,11 +11,10 @@ const RestaurantMenu = ()=>{
     async function getRestaurantMenu(){
         const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${id}&submitAction=ENTER`)
         const json = await data.json()
-        // console.log(json.data.cards[0].card.card.info)
+   
         setmenu(json.data.cards[0].card.card.info)
     }
     if(!menu) return null
-// AutoVegOnly_qkjowj
 console.log(menu.cloudinaryImageId);
     return(
         <div>

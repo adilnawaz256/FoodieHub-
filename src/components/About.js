@@ -38,7 +38,8 @@ const About = () => {
         <h4 className='text-xl tracking-wider leading-10'>"Better you will feel if you eat a Food<span className=''>Fire</span>healthy meal"</h4>
         </div>
         <div className="right">
-        <img src={burgerphoto} alt="burger photo" className=''/>
+    
+        <img src={burgerphoto} alt="burger-photo"  />
         </div>
         </div>
         </div>
