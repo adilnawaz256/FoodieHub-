@@ -8,6 +8,7 @@ import { lazy, Suspense } from "react"
 import ShimmerCardRestaurantCard from "./components/ShimmerRestaurantCard"
 import { Provider } from "react-redux"
 import { HandleContext } from "./utils/HandleContext"
+import store from "./utils/store"
 
 const Navbar = lazy(()=> import('./components/Navbar'))
 const About = lazy(()=>  import('../src/components/About'))
@@ -34,12 +35,13 @@ function App() {
   
     return (!isOnline)?<OfflineComponent/>:(
         <>
+        <Provider store={store}>
     <HandleContext.Provider value={locationCity}>
           <Navbar />
             <Outlet />
             <Footer />
             </HandleContext.Provider>
-           
+            </Provider>
         </>
     )
 }
