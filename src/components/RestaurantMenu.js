@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { addItems } from "../utils/cartSlice"
 
 const ImageUrl = 'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit'
 
@@ -13,7 +15,9 @@ const HandleStylebtn = {
 const RestaurantMenu = () => {
   const { id } = useParams()
   const [menu, setmenu] = useState(null)
-  const [menuitem , setmenuitem] = useState(null)
+  const [menuitem, setmenuitem] = useState(null)
+  const [btnhandle,setbtnhandle] = useState(true) 
+  const dispatch = useDispatch()
   useEffect(() => {
     getRestaurantMenu()
   }, [])
@@ -31,6 +35,10 @@ const RestaurantMenu = () => {
   console.log(menuitem);
   // const { slaString, lastMileTravelString } = nearestOutletNudge?.nearestOutletInfo?.siblingOutlet?.sla
   console.log(totalRatingsString, avgRating);
+ 
+  function handleItems(item){
+    dispatch(addItems(item))
+  }
   return (
     <>
       <div className=" mt-10 p-5">
@@ -58,28 +66,30 @@ const RestaurantMenu = () => {
         </div>
         <hr style={{ textAlign: "center" }} className="font-bold mt-2" />
         {
-          Object.values(menuitem).map(ite=>{
-            return(
+          Object.values(menuitem).map(ite => {
+            return (
               <>
-              <div className="flex justify-evenly mt-16 ">
-          <div className="">
-            <h3 className="font-bold text-lg">{ite.card.info.name}</h3>
-            <p className="font-light text-base">₹{ite.card.info.price}</p>
-          </div>
-          <div className="" style={{
-            position: "relative",
-            left: "22%",
-            top: "-27px"
-          }}>
-            <img className="w-32" src={`${ImageUrl}/${ite.card.info.imageId}`} alt="" />
-            <button className=" font-bold text-lg bg-white  text-center w-20 rounded-lg" style={HandleStylebtn}>Add</button>
-          </div>
-          <div>
-          </div>
-      
-        </div>
-        <hr/>
-        </>
+                <div className="flex justify-evenly mt-16 ">
+                  <div className="">
+                    <h3 className="font-bold text-lg">{ite.card.info.name}</h3>
+                    <p className="font-light text-base">₹{ite.card.info.price}</p>
+                  </div>
+                  <div className="" style={{
+                    position: "relative",
+                    left: "22%",
+                    top: "-27px"
+                  }}>
+                    <img className="w-32" src={`${ImageUrl}/${ite.card.info.imageId}`} alt="" />
+                    <button className=" font-bold text-lg bg-white  text-center w-20 rounded-lg" style={HandleStylebtn} onClick={()=>handleItems(ite.card.info)}>{
+                      btnhandle?<button>+</button>:<button>-</button>
+          }</button>
+                  </div>
+                  <div>
+                  </div>
+
+                </div>
+                <hr />
+              </>
             )
           })
         }
@@ -99,7 +109,7 @@ const RestaurantMenu = () => {
           <div>
           </div>
         </div> */}
-       
+
       </div>
     </>
   )
