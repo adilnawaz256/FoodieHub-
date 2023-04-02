@@ -39,7 +39,7 @@ function App() {
     <HandleContext.Provider value={locationCity}>
           <Navbar />
             <Outlet />
-            <Footer />
+            {/* <Footer /> */}
             </HandleContext.Provider>
             </Provider>
         </>
