@@ -9,6 +9,7 @@ import ShimmerCardRestaurantCard from "./components/ShimmerRestaurantCard"
 import { Provider } from "react-redux"
 import { HandleContext } from "./utils/HandleContext"
 import store from "./utils/store"
+import Cart from "./components/Cart"
 
 const Navbar = lazy(()=> import('./components/Navbar'))
 const About = lazy(()=>  import('../src/components/About'))
@@ -77,6 +78,10 @@ const approuter = createBrowserRouter([
             },{
                 path:"/restaurantmenu/:id",
                 element:<RestaurantMenu/>
+            },
+            {
+                path:"/cart",
+                element:<Cart/>
             }
         
         ],
