@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { addItems, removeItems } from "../utils/cartSlice"
 import store from "../utils/store"
+import RestaurantsNotFound from "./RestaurantsNotFound"
 
 const ImageUrl = 'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit'
 
@@ -18,7 +19,6 @@ const RestaurantMenu = () => {
   const { id } = useParams()
   const [menu, setmenu] = useState(null)
   const [menuitem, setmenuitem] = useState(null)
-  const [btnhandle, setbtnhandle] = useState(true)
   const dispatch = useDispatch()
   const Cart = useSelector(store=> store.cart.items)
   useEffect(() => {
@@ -33,8 +33,10 @@ const RestaurantMenu = () => {
 
   if (!menu) return <h1>Loading....</h1>
   const { name, avgRating, totalRatingsString, costForTwoMessage, feeDetails, cuisines
-    , locality, nearestOutletNudge } = menu
-  console.log(menuitem);
+    , locality } = menu
+    // console.log(menu);
+
+  console.log("item",menuitem);
   // const { slaString, lastMileTravelString } = nearestOutletNudge?.nearestOutletInfo?.siblingOutlet?.sla
   console.log(totalRatingsString, avgRating);
 
@@ -44,6 +46,7 @@ dispatch(addItems(item))
 function handleRemoveItem(item){
   dispatch(removeItems(item))
 }
+if(!menuitem) return <RestaurantsNotFound/>
   return (
     <>
       <div className="mt-10 p-5">
@@ -71,9 +74,11 @@ function handleRemoveItem(item){
         </div>
 
         <hr class="w-1/2 my-4 border-t border-gray-700 mx-auto" />
+  
+          
         {
           Object.values(menuitem).map(ite => {
-            return (
+           return(
               <>
                 <div className="flex items-center ml-72 mt-16">
                   <div>
@@ -101,6 +106,7 @@ function handleRemoveItem(item){
             )
           })
         }
+      }
       </div>
     </>
   )

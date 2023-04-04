@@ -14,7 +14,6 @@ const Body = () => {
         const data = await fetch( `${API}`)
         const json = await data.json()
         setrestaurants(json?.data?.cards[2]?.data?.data?.cards)
-        console.log(json.data.cards[2].data.data.cards)
     }
     return (
         <>

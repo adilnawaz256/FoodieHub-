@@ -6,7 +6,7 @@ import store from "../utils/store";
 const Navbar = () => {
     const [islogin, setlogin] = useState(true)
     const cartItem = useSelector(store => store.cart.items)
-    console.log(cartItem);
+
     return (
         <>
             <nav className="flex justify-between items-center shadow-lg">
