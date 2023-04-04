@@ -20,7 +20,7 @@ const Body = () => {
     }
     return (
         <>
-            <SearchBox />
+            <SearchBox  restaurants={restaurants} setrestaurants={setrestaurants}/>
             <div className="flex flex-wrap justify-center items-center hover:border-b-white">
                 {
                     (restaurants.length === 0) ? <ShimmerCardRestaurantCard /> :

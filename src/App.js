@@ -34,13 +34,14 @@ const locationCity ={
 function App() {
     const isOnline = useOnline()
   
+  
     return (!isOnline)?<OfflineComponent/>:(
         <>
         <Provider store={store}>
     <HandleContext.Provider value={locationCity}>
           <Navbar />
             <Outlet />
-            {/* <Footer /> */}
+            <Footer />
             </HandleContext.Provider>
             </Provider>
         </>

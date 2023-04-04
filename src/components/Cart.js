@@ -3,6 +3,7 @@ import store from "../utils/store"
 
 const Cart = ()=>{
     const Cart = useSelector(store=> store.cart.items)
+    console.log("Re Renders");
     return(
         <div>
 
