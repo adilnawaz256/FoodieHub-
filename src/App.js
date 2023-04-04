@@ -17,20 +17,6 @@ const Footer = lazy(()=> import('./components/Footer'))
 const Contact = lazy(()=> import('./components/Contact'))
 const Profile = lazy(()=>import('./pages/Profile'))
 
-
-
-const locationCity ={
-    "Delhi":{
-        lat:12.971598,
-        lag:77.5945627,
-    },
-    "Patna":{
-        lat:25.5940947,
-        lag:85.1375645
-    },
-  
-
-}
 function App() {
     const isOnline = useOnline()
   
@@ -38,11 +24,9 @@ function App() {
     return (!isOnline)?<OfflineComponent/>:(
         <>
         <Provider store={store}>
-    <HandleContext.Provider value={locationCity}>
           <Navbar />
             <Outlet />
             <Footer />
-            </HandleContext.Provider>
             </Provider>
         </>
     )

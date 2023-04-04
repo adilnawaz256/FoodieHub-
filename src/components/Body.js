@@ -4,23 +4,21 @@ import SearchBox from '../pages/SearchBox'
 import ShimmerCardRestaurantCard from "./ShimmerRestaurantCard";
 import { API } from "./constant";
 import { Link } from "react-router-dom";
-import { HandleContext } from "../utils/HandleContext";
 const Body = () => {
-    const city = useContext(HandleContext)
-    const {lat , lag} = city.Patna
     const [restaurants, setrestaurants] = useState([])
+    const [search , setSearch] = useState('')
     useEffect(() => {
         getRestaurant()
-    }, [])
+    }, [search])
     async function getRestaurant() {
-        const data = await fetch( `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lag}&page_type=DESKTOP_WEB_LISTING`)
+        const data = await fetch( `${API}`)
         const json = await data.json()
         setrestaurants(json?.data?.cards[2]?.data?.data?.cards)
         console.log(json.data.cards[2].data.data.cards)
     }
     return (
         <>
-            <SearchBox  restaurants={restaurants} setrestaurants={setrestaurants}/>
+            <SearchBox  restaurants={restaurants} setrestaurants={setrestaurants} setSearch={setSearch} search={search}/>
             <div className="flex flex-wrap justify-center items-center hover:border-b-white">
                 {
                     (restaurants.length === 0) ? <ShimmerCardRestaurantCard /> :

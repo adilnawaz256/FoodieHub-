@@ -1,8 +1,7 @@
 import { useState } from "react"
 import useFilter from "../utils/useFilter"
 
-const SearchBox = ({restaurants,setrestaurants}) => {
-    const [search , setSearch] = useState('Burger')
+const SearchBox = ({restaurants,setrestaurants,search,setSearch}) => {
   const filter = useFilter(search ,restaurants)
     return (
         <div className="flex justify-center m-6">
