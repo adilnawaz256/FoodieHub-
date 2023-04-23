@@ -35,7 +35,7 @@ const Cart = () => {
                     <li className="list-none mr-5 mt-10" onClick={RemoveItems}><i className="fa-solid fa-xmark"></i></li>
                 <img className="w-36 mt-3 rounded-xl" src={`${ImageCloundinaryURL}/${car.imageId}`} alt/>
                 <h3 className="text-2xl font-light mt-10 ml-3">{car.name}</h3>
-                <h3 className="text-2xl font-light mt-10 ml-7">₹{car.defaultPrice/100}</h3>
+                <h3 className="text-2xl font-light mt-10 ml-7">₹{(!car.defaultPrice/100)?car.price/100:car.defaultPrice/100}</h3>
             </div>
                 <hr className="mt-3"/>
                 </>
