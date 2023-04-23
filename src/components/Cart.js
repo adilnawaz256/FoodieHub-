@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import store from "../utils/store"
 import { ImageCloundinaryURL } from "./constant";
 import { removeItems } from "../utils/cartSlice";
+import EmptyCart from '../assets/cart.jpg'
 
 const Cart = () => {
     const Cart = useSelector(store => store.cart.items)
@@ -21,6 +22,8 @@ const Cart = () => {
     }
     return (
         <div className="flex justify-around mt-20">
+            {
+                Cart.length ==0?<img src={EmptyCart}  className="w-72"/>:
             <div className="">
                 <h2 className="font-semibold text-lg">Shopping Cart</h2>
                 <hr />
@@ -40,6 +43,7 @@ const Cart = () => {
                    })
                 }
             </div>
+            }
             <div className="">
                 <h2 className="font-semibold text-lg">Cart Totals</h2>
                 <hr />
