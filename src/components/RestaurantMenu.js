@@ -83,7 +83,7 @@ if(!menuitem) return <RestaurantsNotFound/>
                 <div className="flex items-center ml-72 mt-16">
                   <div>
                     <h3 className="font-bold text-lg">{ite.card.info.name}</h3>
-                    <p className="font-light text-base">₹{ite.card.info.price / 100}</p>
+                    <p className="font-light text-base">₹{(!ite.card.info.price / 100)?ite.card.info.defaultPrice/100:ite.card.info.price / 100}</p>
                   </div>
                   <div className="relative ml-auto">
                     <img className="w-32 sm:w-24 mr-52" src={`${ImageUrl}/${ite.card.info.imageId}`} alt="" />
