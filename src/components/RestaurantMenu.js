@@ -106,7 +106,7 @@ if(!menuitem) return <RestaurantsNotFound/>
             )
           })
         }
-      }
+      
       </div>
     </>
   )

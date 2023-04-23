@@ -1,13 +1,49 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import store from "../utils/store"
+import { ImageCloundinaryURL } from "./constant";
+import { removeItems } from "../utils/cartSlice";
 
-const Cart = ()=>{
-    const Cart = useSelector(store=> store.cart.items)
-
-    return(
-        <div>
-
-            <h1>This is Cart {Cart.length}</h1>
+const Cart = () => {
+    const Cart = useSelector(store => store.cart.items)
+    const dispatch = useDispatch()
+    let total  = 0 
+    Cart.forEach(element => {
+            total +=element.defaultPrice/100
+    });
+    const RemoveItems = ()=>{
+      dispatch(removeItems())
+    }
+    return (
+        <div className="flex justify-around mt-20">
+            <div className="">
+                <h2 className="font-semibold text-lg">Shopping Cart</h2>
+                <hr />
+                {
+                   Object.values(Cart).map((car)=>{
+                    return(
+                        <>
+                        <div className="flex mt-3" key={car.id}>
+                    <li className="list-none mr-5 mt-10" onClick={RemoveItems}><i class="fa-solid fa-xmark"></i></li>
+                <img className="w-36 mt-3 rounded-xl" src={`${ImageCloundinaryURL}/${car.imageId}`} alt/>
+                <h3 className="text-2xl font-light mt-10 ml-3">{car.name}</h3>
+                <h3 className="text-2xl font-light mt-10 ml-7">₹{car.defaultPrice/100}</h3>
+            </div>
+                <hr className="mt-3"/>
+                </>
+                    )
+                   })
+                }
+            </div>
+            <div className="">
+                <h2 className="font-semibold text-lg">Cart Totals</h2>
+                <hr />
+                <div className="flex mt-3">
+                    <h3 className="font-semibold">SubTotal</h3>
+                    <h3 className="ml-14 font-semibold">₹{total}</h3>
+                </div>
+                <hr/>
+                <button className="mt-10 p-3 bg-slate-700 rounded-md text-white">Proceed to checkout</button>
+            </div>
         </div>
     )
 }
