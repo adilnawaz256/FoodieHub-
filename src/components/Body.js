@@ -2,7 +2,7 @@ import {  useContext, useEffect, useState } from "react";
 import RestaurantsCard from "../pages/RestaurantsCard";
 import SearchBox from '../pages/SearchBox'
 import ShimmerCardRestaurantCard from "./ShimmerRestaurantCard";
-import { API } from "./constant";
+import { GET_RESTAURANTS_LIST } from "./constant";
 import { Link } from "react-router-dom";
 const Body = () => {
     const [restaurants, setrestaurants] = useState([])
@@ -11,7 +11,7 @@ const Body = () => {
         getRestaurant()
     }, [search])
     async function getRestaurant() {
-        const data = await fetch( `${API}`)
+        const data = await fetch(GET_RESTAURANTS_LIST)
         const json = await data.json()
         setrestaurants(json?.data?.cards[2]?.data?.data?.cards)
     }

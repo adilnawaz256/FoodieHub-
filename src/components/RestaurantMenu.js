@@ -25,7 +25,7 @@ const RestaurantMenu = () => {
     getRestaurantMenu()
   }, [])
   async function getRestaurantMenu() {
-    const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${id}`)
+    const data = await fetch(`https://foodhu.onrender.com/api/menu?lat=12.9351929&lng=77.62448069999999&restaurantId=${id}`)
     const json = await data.json()
     setmenu(json.data.cards[0].card.card.info)
     setmenuitem(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards)
