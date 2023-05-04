@@ -4,13 +4,14 @@ import useOnline from "./utils/useonline"
 import OfflineComponent from "./components/OfflineComponent"
 import Body from "./components/Body"
 import RestaurantMenu from "./components/RestaurantMenu"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useState } from "react"
 import ShimmerCardRestaurantCard from "./components/ShimmerRestaurantCard"
 import { Provider } from "react-redux"
 import { HandleContext } from "./utils/HandleContext"
 import store from "./utils/store"
 import Cart from "./components/Cart"
-
+import ErrorPage from "./Error/ErrorPage"
+import DarkModeContext from "./utils/ThemeDark"
 const Navbar = lazy(()=> import('./components/Navbar'))
 const About = lazy(()=>  import('../src/components/About'))
 const Footer = lazy(()=> import('./components/Footer'))
@@ -19,15 +20,20 @@ const Profile = lazy(()=>import('./pages/Profile'))
 
 function App() {
     const isOnline = useOnline()
-  
+    const [darkMode , setDarkMode] = useState(false)
+  function toggleDarkMode(){
+    setDarkMode(darkMode =>  !darkMode)
+  }
   
     return (!isOnline)?<OfflineComponent/>:(
         <>
+        <DarkModeContext.Provider value={{darkMode , toggleDarkMode}}>
         <Provider store={store}>
           <Navbar />
             <Outlet />
             <Footer />
             </Provider>
+            </DarkModeContext.Provider>
         </>
     )
 }
@@ -41,7 +47,7 @@ const approuter = createBrowserRouter([
         children: [
             {
                 path: "about",
-                element: <Suspense fallback={<ShimmerCardRestaurantCard/>}>
+                element: <Suspense fallback={<h1>Loading....</h1>}>
                     <About />
                 </Suspense>,
                 children:[
@@ -70,6 +76,7 @@ const approuter = createBrowserRouter([
             }
         
         ],
+        errorElement:<ErrorPage/>
 
     },
     {

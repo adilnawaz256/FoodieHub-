@@ -8,7 +8,6 @@ const ShimmerCardRestaurantCard = () => {
                         <div className="row w-64 h-80  m-4 rounded  shadow-xl animate-pulse">
                             <div className="rounded bg-slate-50  m-2 h-40"></div>
                             <div className="mt-3 rounded">
-                                <h3 className="font-xl text-lg ml-2 animate-pulse bg-slate-700 rounded"></h3>
                                 <div className="ml-2 text-sm"></div>
                                 <div className="flex justify-around mt-3 animate-pulse bg-neutral-300">
                                     <div className="" >

@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import Title from "../pages/Title";
 import { useSelector } from "react-redux";
 import store from "../utils/store";
+import DarkModeContext from "../utils/ThemeDark";
 const Navbar = () => {
     const [islogin, setlogin] = useState(true)
     const cartItem = useSelector(store => store.cart.items)
-
+    const Mode = useContext(DarkModeContext)
+  
     return (
         <>
             <nav className="flex justify-between items-center shadow-lg">
@@ -38,6 +40,7 @@ const Navbar = () => {
                         }
                     </li>
                 </ul>
+         
             </nav>
         </>
     )
