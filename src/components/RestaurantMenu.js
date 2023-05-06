@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { addItems, removeItems } from "../utils/cartSlice"
 import store from "../utils/store"
 import RestaurantsNotFound from "./RestaurantsNotFound"
+import { langitude, latitude } from "./constant"
 
 const ImageUrl = 'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit'
 
@@ -25,7 +26,7 @@ const RestaurantMenu = () => {
     getRestaurantMenu()
   }, [])
   async function getRestaurantMenu() {
-    const data = await fetch(`https://foodhu.onrender.com/api/menu?lat=12.9351929&lng=77.62448069999999&restaurantId=${id}`)
+    const data = await fetch(`https://foodhu.onrender.com/api/menu?lat=${latitude}&lng=${langitude}&restaurantId=${id}`)
     const json = await data.json()
     setmenu(json.data.cards[0].card.card.info)
     setmenuitem(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards)
