@@ -1,10 +1,10 @@
-import { createBrowserRouter, Outlet } from "react-router-dom"
+import { createBrowserRouter, Navigate, Outlet, redirect, useNavigate } from "react-router-dom"
 import LoginPage from "./components/LoginPage"
 import useOnline from "./utils/useonline"
 import OfflineComponent from "./components/OfflineComponent"
 import Body from "./components/Body"
 import RestaurantMenu from "./components/RestaurantMenu"
-import { lazy, Suspense, useState } from "react"
+import { lazy, Suspense, useEffect, useState } from "react"
 import ShimmerCardRestaurantCard from "./components/ShimmerRestaurantCard"
 import { Provider } from "react-redux"
 import { HandleContext } from "./utils/HandleContext"
@@ -18,13 +18,31 @@ const Footer = lazy(()=> import('./components/Footer'))
 const Contact = lazy(()=> import('./components/Contact'))
 const Profile = lazy(()=>import('./pages/Profile'))
 
+
+
+// console.log(isAuthenticated);
 function App() {
+    // const isAuthenticated = window.localStorage.getItem("verified") == 'true'
     const isOnline = useOnline()
-    const [darkMode , setDarkMode] = useState(false)
-  function toggleDarkMode(){
-    setDarkMode(darkMode =>  !darkMode)
-  }
   
+    const isAuthenticated = window.localStorage.getItem('verified') === 'true';
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated=="true") {
+      navigate('/');
+    } 
+    else if(!isAuthenticated){
+        navigate('/login')
+    }
+  }, [isAuthenticated, navigate]);
+    const [darkMode , setDarkMode] = useState(false)
+    function toggleDarkMode(){
+        setDarkMode(darkMode =>  !darkMode)
+    }
+
+
+
     return (!isOnline)?<OfflineComponent/>:(
         <>
         <DarkModeContext.Provider value={{darkMode , toggleDarkMode}}>
@@ -41,9 +59,7 @@ function App() {
 const approuter = createBrowserRouter([
     {
         path: "/",
-        element: <Suspense fallback={<h1>Loading.......</h1>}>
-            <App />
-        </Suspense>,
+        element:<Suspense fallback={<h1>Loading....</h1>}><App/></Suspense>,
         children: [
             {
                 path: "about",
@@ -76,11 +92,10 @@ const approuter = createBrowserRouter([
             }
         
         ],
-        errorElement:<ErrorPage/>
-
+        errorElement:<ErrorPage/>,
     },
     {
-        path:"/signin",
+        path:"/login",
         element:<LoginPage/>
     }
 ])

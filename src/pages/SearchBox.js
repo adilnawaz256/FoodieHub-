@@ -1,7 +1,10 @@
-import { useState } from "react"
 import useFilter from "../utils/useFilter"
+// import { json } from "react-router-dom";
 
 const SearchBox = ({restaurants,setrestaurants,search,setSearch}) => {
+    // console.log(JSON.stringify(restaurants));
+    // const res = JSON.stringify(restaurants)
+  
   const filter = useFilter(search ,restaurants)
     return (
         <div className="flex justify-center m-6">

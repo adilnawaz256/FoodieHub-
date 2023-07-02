@@ -1,7 +1,24 @@
 import { Field, Formik } from "formik";
 import logo from '../assets/logo.jpg'
-const LoginPage = ()=>
-{
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import GoogleButton from "react-google-button";
+import { auth } from "../utils/Firebase/FireBase";
+
+
+
+const Provider = new GoogleAuthProvider()
+const LoginPage = ()=>{
+    const LoginWithGoogle =()=>{
+            console.log("Working fine");
+            signInWithPopup(auth , Provider).then((result)=>{
+                console.log(result);
+                window.localStorage.setItem("email" , result.user.email)
+                window.localStorage.setItem("name" , result.user.displayName)
+                window.localStorage.setItem("verified" , result.user.emailVerified)
+            }).catch((Error)=>{
+                    console.log(Error);
+            })
+            }
     return(
     <div className="container mx-auto ">
         <div className="flex justify-center">
@@ -34,13 +51,15 @@ const LoginPage = ()=>
                                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                         Sign In
                                     </button>
-                                    <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                                    <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 " href="#">
                                         Forgot Password?
                                     </a>
                                 </div>
                             </form>
                         )}
                 </Formik>
+                
+                <GoogleButton  className="mt-3 ml-14" onClick={LoginWithGoogle}/>
             </div>
         </div>
     </div>

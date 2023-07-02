@@ -5,16 +5,32 @@ import { useSelector } from "react-redux";
 import store from "../utils/store";
 import DarkModeContext from "../utils/ThemeDark";
 const Navbar = () => {
-    const [islogin, setlogin] = useState(true)
+    const [islogin, setlogin] = useState(false)
     const cartItem = useSelector(store => store.cart.items)
     const Mode = useContext(DarkModeContext)
-  
+
+
+
+    function HandleLogout(){
+        if(window.confirm("Are you sure you want to log out?")){
+            window.localStorage.removeItem("name")
+            window.localStorage.removeItem("email")
+            window.localStorage.removeItem("verified")
+            setlogin(true)
+        }else{
+            setlogin(false)
+        }
+
+       
+
+    }
     return (
         <>
             <nav className="flex justify-between items-center shadow-lg">
                 <div className="flex">
                     <Title />
                 </div>
+                <h1>{window.localStorage.getItem("name")}</h1>
                 <ul className="flex m-3">
                     <li className="p-3 hover:text-indigo-400 hover:rounded"><Link to="/" className="font-medium">Home</Link></li>
                     <li className="p-3 hover:text-indigo-400 hover:rounded"><Link to="/about" className="font-medium">About</Link></li>
@@ -30,13 +46,11 @@ const Navbar = () => {
                     <li className="p-3 hover:bg-indigo-400 hover:rounded-3xl">
                         {
                             islogin ?
-                                <Link to="signin">
+                                <Link to="login">
                                     <button className="font-medium"
                                         onClick={() => {
-                                            setlogin(false)
-                                        }}>Login</button></Link> : <Link to=""><button className="font-medium" onClick={() => {
                                             setlogin(true)
-                                        }}>Logout</button></Link>
+                                        }}>Login</button></Link> : <Link to=""><button className="font-medium" onClick={HandleLogout}>Logout</button></Link>
                         }
                     </li>
                 </ul>

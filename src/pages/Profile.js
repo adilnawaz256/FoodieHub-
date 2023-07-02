@@ -15,7 +15,7 @@ const Profile = () => {
     }
     // console.log(Githubprofile);
 
-    return (!Githubprofile) ? <ShimmerCard/>:(
+    return (!Githubprofile) ? <h1>Loading...</h1>:(
         <div className="flex justify-center">
             <div className="shadow w-80 h-96 m-10">
                 <h1 className="text-center font-bold m-8 text-xl">About Me </h1>

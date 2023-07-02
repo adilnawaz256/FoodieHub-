@@ -1,9 +1,10 @@
-import {  useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantsCard from "../pages/RestaurantsCard";
 import SearchBox from '../pages/SearchBox'
 import ShimmerCardRestaurantCard from "./ShimmerRestaurantCard";
 import { GET_RESTAURANTS_LIST } from "./constant";
 import { Link } from "react-router-dom";
+import Foodsection from "../pages/Foodsection";
 const Body = () => {
     const [restaurants, setrestaurants] = useState([])
     const [search , setSearch] = useState('')
@@ -32,6 +33,8 @@ const InfinteScrollHandle = ()=>{
     return (
         <>
             <SearchBox  restaurants={restaurants} setrestaurants={setrestaurants} setSearch={setSearch} search={search}/>
+            <Foodsection/>
+            <h1 className="text-3xl mt-4 p-3 ml-16 font-semibold">Best Food in Delhi NCR</h1>
             <div className="flex flex-wrap justify-center items-center hover:border-b-white">
                 {
                     (restaurants.length === 0) ? <ShimmerCardRestaurantCard /> :
