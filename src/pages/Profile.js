@@ -1,6 +1,6 @@
 import SocialMedia from "./SocialMedia"
 import { useEffect, useState } from 'react'
-import ShimmerCard from "../components/ShimmerCard"
+import ShimmerCard from "../assets/shimmer/ShimmerCard"
 
 
 const Profile = () => {
